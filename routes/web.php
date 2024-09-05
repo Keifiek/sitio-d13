@@ -1,6 +1,9 @@
 <?php
 
 //use GuzzleHttp\Psr7\Request;
+
+use App\Http\Controllers\ContactoController;
+use App\Models\Contacto;
 use Illuminate\Http\Request as Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/contacto', function(){
-    return view('contacto');
-});
-Route::post('/guardar-formulario', function(Request $request){
-    dd($request->all());
-    //Recibir datos:
-    //Hola
-    //Validar datos:
-    //Guardar datos:
-    return "Guardado";
-});
+Route::get('/contacto', [ContactoController::class, 'formContacto']);
+Route::post('/guardar-formulario', [ContactoController::class, 'guardarFormulario']);
+Route::get('/mensajes', [ContactoController::class, 'listado']);
