@@ -3,6 +3,7 @@
 //use GuzzleHttp\Psr7\Request;
 
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\NoticiaController;
 use App\Models\Contacto;
 use Illuminate\Http\Request as Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/contacto', [ContactoController::class, 'formContacto']);
+Route::get('/contacto/{usuario?}', [ContactoController::class, 'formContacto']);
 Route::post('/guardar-formulario', [ContactoController::class, 'guardarFormulario']);
 Route::get('/mensajes', [ContactoController::class, 'listado']);
+Route::resource('/noticias',[NoticiaController::class]);
